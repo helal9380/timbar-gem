@@ -1,9 +1,29 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { authContext } from "../../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const {signIn, user} = useContext(authContext)
+
+  const handleLogin = e => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    signIn(email, password)
+    .then(result => {
+      console.log(result.user);
+      toast.success('Successfully login')
+    })
+    .catch(error => {
+      console.log(error.message);
+      toast.error(error)
+    })
+  }
   return (
     <div
       style={{
@@ -15,14 +35,15 @@ const Login = () => {
       }}>
       <div className="w-[40%] mx-auto rounded-xl border border-gray-400 bg-[rgba(0,0,0,0.4)] text-white">
         <h1 className=" text-xl md:text-4xl font-bold text-center mt-5">Login now!</h1>
-        <form className="card-body">
+        <form onSubmit={handleLogin} className="card-body">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
             </label>
             <input
               type="email"
-              placeholder="email"
+              name="email"
+              placeholder="Email"
               className="input input-bordered"
               required
             />
@@ -33,7 +54,8 @@ const Login = () => {
             </label>
             <input
               type="password"
-              placeholder="password"
+              name="password"
+              placeholder="Password"
               className="input input-bordered"
               required
             />
@@ -44,7 +66,7 @@ const Login = () => {
             </label>
           </div>
           <div className="form-control mt-6">
-          <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login</button>
+          <input className="bg-[#e7272d] py-2 rounded-lg" type="submit" value="Login" />
           </div>
         </form>
       </div>

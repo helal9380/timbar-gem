@@ -1,10 +1,13 @@
 /** @format */
 
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, NavLink, Navigate } from "react-router-dom";
 import logo from '../../public/logo-2.png'
+import { authContext } from "../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const {user, logOut} = useContext(authContext)
   const links = (
     <>
       <NavLink className= "text-xl mr-4 underline" to={'/'}>
@@ -19,9 +22,17 @@ const Navbar = () => {
      
     </>
   );
+
+  const handleLogOut = () => {
+    logOut()
+    .then(() => {
+      toast.success('Successfully log out')
+      Navigate('/')
+    })
+  }
   return (
     <div>
-      <div className="navbar text-gray-800 bg-white">
+      <div className="navbar bg-[#9d0b0be1]">
         <div className="navbar-start">
           <div className="dropdown">
             <div
@@ -56,7 +67,10 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to={'/login'} className="btn">Login</Link>
+          {
+            user ? <Link onClick={handleLogOut} className="btn">Log out</Link>
+            : <Link to={'/login'} className="btn">Login</Link>
+          }
         </div>
       </div>
     </div>

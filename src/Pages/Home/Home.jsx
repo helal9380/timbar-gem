@@ -1,9 +1,11 @@
-
+import Foods from "./Foods";
+import Slider from "./Slider";
 
 const Home = () => {
     return (
         <div>
-            <h3>this is home</h3>
+            <Slider></Slider>
+            <Foods></Foods>
         </div>
     );
 };

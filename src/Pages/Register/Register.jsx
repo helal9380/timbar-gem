@@ -1,9 +1,30 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { authContext } from "../../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Register = () => {
+  const  {createUser} = useContext(authContext)
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, email,password);
+    createUser(email, password)
+    .then(result => {
+      console.log(result.user);
+      toast.success('Registeration successful')
+    })
+    .catch(error => {
+      console.log(error);
+      toast.error('Somthing error')
+    })
+  }
   return (
     <div
       style={{
@@ -15,7 +36,7 @@ const Register = () => {
       }}>
       <div className="w-[40%] mx-auto rounded-xl border border-gray-400 bg-[rgba(0,0,0,0.4)] text-white">
         <h1 className="text-xl md:text-4xl font-bold text-center mt-5">Sign Up now!</h1>
-        <form className="card-body">
+        <form onSubmit={handleRegister} className="card-body">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Name</span>
@@ -45,6 +66,7 @@ const Register = () => {
             </label>
             <input
               type="password"
+              name="password"
               placeholder="Password"
               className="input input-bordered"
               required
@@ -61,7 +83,7 @@ const Register = () => {
             </label>
           </div>
           <div className="form-control mt-6">
-          <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Register</button>
+         <input className="bg-[#e7272d] py-2 rounded-lg" type="submit" value="Register" />
           </div>
         </form>
       </div>
