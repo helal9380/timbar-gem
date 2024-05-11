@@ -1,12 +1,15 @@
 /** @format */
 
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { authContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
-  const {signIn, user} = useContext(authContext)
+  const {signIn, user, signInWithGoogle} = useContext(authContext);
+  const navigate = useNavigate()
+
 
   const handleLogin = e => {
     e.preventDefault();
@@ -22,6 +25,16 @@ const Login = () => {
     .catch(error => {
       console.log(error.message);
       toast.error(error)
+    })
+  }
+  const handleGoogle = () => {
+    signInWithGoogle()
+    .then(result => {
+      console.log(result.user);
+      navigate('/')
+    })
+    .catch(err => {
+      console.log(err);
     })
   }
   return (
@@ -66,9 +79,12 @@ const Login = () => {
             </label>
           </div>
           <div className="form-control mt-6">
-          <input className="bg-[#e7272d] py-2 rounded-lg" type="submit" value="Login" />
+          <input className="bg-[#e7272d] cursor-pointer py-2 rounded-lg" type="submit" value="Login" />
           </div>
         </form>
+        <div onClick={handleGoogle} className="my-2 flex justify-center">
+          <FaGoogle className="border border-red-400 w-10 h-10 p-2 rounded-full cursor-pointer"></FaGoogle>
+        </div>
       </div>
     </div>
   );

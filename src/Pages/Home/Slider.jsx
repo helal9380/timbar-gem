@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/bundle";
 import "./slide.css";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Link } from "react-router-dom";
 
 const Slider = () => {
   return (
@@ -35,11 +36,10 @@ const Slider = () => {
               <p className="mb-5 hidden md:block">
               Embark on a culinary journey around the world with TastyTrekker.com. Discover exotic flavors, traditional recipes
               </p>
-              <a
-                href="#hospitality"
+              <Link to={'/all_foods'}
                 className="py-2 px-4 border border-[#b65a18] rounded-lg font-bold">
-                Explore Now
-              </a>
+                All Foods
+              </Link>
             </div>
           </div>
         </SwiperSlide>
@@ -62,11 +62,10 @@ const Slider = () => {
               <p className="mb-5 hidden md:block">
               Delight your taste buds with the freshest ingredients and seasonal delights. From vibrant spring salads to cozy winter stews, TastyTrekker.com brings you recipes that celebrate the flavors of each season.
               </p>
-              <a
-                href="#hospitality"
+              <Link to={'/all_foods'}
                 className="py-2 px-4 border border-[#b65a18] rounded-lg font-bold">
-                Explore Now
-              </a>
+                All Foods
+              </Link>
             </div>
           </div>
         </SwiperSlide>
@@ -89,11 +88,10 @@ const Slider = () => {
               <p className="mb-5 hidden md:block">
               Elevate your weekend brunch experience with mouthwatering recipes and creative twists on classic favorites. Whether you're hosting a gathering or enjoying a leisurely morning at home,
               </p>
-              <a
-                href="#hospitality"
+              <Link to={'/all_foods'}
                 className="py-2 px-4 border border-[#b65a18] rounded-lg font-bold">
-                Explore Now
-              </a>
+                All Foods
+              </Link>
             </div>
           </div>
         </SwiperSlide>

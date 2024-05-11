@@ -1,11 +1,12 @@
-import Foods from "./Foods";
+
 import Slider from "./Slider";
+import TopFoods from "./TopFoods";
 
 const Home = () => {
     return (
         <div>
             <Slider></Slider>
-            <Foods></Foods>
+            <TopFoods></TopFoods>
         </div>
     );
 };
