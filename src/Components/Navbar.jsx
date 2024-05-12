@@ -92,13 +92,13 @@ const Navbar = () => {
             tabIndex={0}
             className="mt-3 space-y-2 z-10 p-2 shadow menu menu-md dropdown-content bg-base-100 rounded-box text-white w-52">
             <li className="border-b border-[#b65a18]">
-              <a className="justify-between">My foods</a>
+              <Link to={'/'} className="justify-between">My foods</Link>
             </li>
             <li className="border-b border-[#b65a18]">
-              <a>Add a food</a>
+              <Link to={'/addFood'}>Add a food</Link>
             </li>
             <li className="border-b border-[#b65a18]">
-              <a>My ordered</a>
+              <Link to={'/myFoods'}>My ordered</Link>
             </li>
             <li>
               <button onClick={handleLogOut}>Logout</button>
