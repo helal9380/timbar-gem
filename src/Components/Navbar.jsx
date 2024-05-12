@@ -36,8 +36,8 @@ const Navbar = () => {
   };
   return (
     <div>
-      <div className="navbar">
-        <div className="navbar-start">
+      <div className="flex items-center justify-between px-5">
+        <div className="navbar w-40">
           <div className="dropdown">
             <div
               tabIndex={0}
@@ -69,25 +69,43 @@ const Navbar = () => {
             alt=""
           />
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
+        <div className="flex">
+          <div className=" hidden lg:flex">
+            <ul className="menu menu-horizontal px-1">{links}</ul>
+          </div>
         </div>
-        <div className="navbar-end">
-          {user ? (
-            <>
-              <button onClick={handleLogOut} className="py-2 px-5 bg-[#b65a18] rounded-lg mr-5">Log out</button>
-              <div className="w-12 h-12">
-              <img className="rounded-full" src={user.photoURL} alt="" />
-              </div>
-            </>
-          ) : (
-            <Link
-              to={"/login"}
-              className="btn">
-              Login
-            </Link>
-          )}
-        </div>
+        {
+          user ? <div className="dropdown dropdown-end">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle avatar">
+              
+            <div className="w-10 rounded-full">
+              <img
+                alt="Tailwind CSS Navbar component"
+                src={user?.photoURL}
+              />
+            </div>
+          </div>
+          <ul
+            tabIndex={0}
+            className="mt-3 space-y-2 z-10 p-2 shadow menu menu-md dropdown-content bg-base-100 rounded-box text-white w-52">
+            <li className="border-b border-[#b65a18]">
+              <a className="justify-between">My foods</a>
+            </li>
+            <li className="border-b border-[#b65a18]">
+              <a>Add a food</a>
+            </li>
+            <li className="border-b border-[#b65a18]">
+              <a>My ordered</a>
+            </li>
+            <li>
+              <button onClick={handleLogOut}>Logout</button>
+            </li>
+          </ul>
+        </div> : <Link className="text-lg font-semibold" to={'/login'}>Login</Link>
+        }
       </div>
     </div>
   );

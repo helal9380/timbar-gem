@@ -33,7 +33,6 @@ const FoodDEtails = () => {
             <div className="py-2 px-5 font-semibold text-center bg-[#b61818] rounded-lg mt-3">
             <Link to={`/purchass/${_id}`} >Purchase</Link>
             </div>
-            
         </div>
       </div>
     </div>

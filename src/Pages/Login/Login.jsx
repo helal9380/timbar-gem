@@ -1,12 +1,13 @@
 /** @format */
 
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { authContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
+  const [err, setErr] = useState('')
   const {signIn, user, signInWithGoogle} = useContext(authContext);
   const navigate = useNavigate()
 
@@ -25,6 +26,7 @@ const Login = () => {
     .catch(error => {
       console.log(error.message);
       toast.error(error)
+      setErr('Please provide correct infomation')
     })
   }
   const handleGoogle = () => {
@@ -78,6 +80,7 @@ const Login = () => {
               </p>
             </label>
           </div>
+          <p className="text-red-500 font-semibold">{err}</p>
           <div className="form-control mt-6">
           <input className="bg-[#e7272d] cursor-pointer py-2 rounded-lg" type="submit" value="Login" />
           </div>
