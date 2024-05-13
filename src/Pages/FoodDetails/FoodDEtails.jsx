@@ -4,27 +4,29 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const FoodDEtails = () => {
   const data = useLoaderData();
-  const { _id, imgUrl, name, food_origin, pric,shortDes, subcategory } = data;
+  const { _id, imgUrl, name, userName, pric,shortDes,country, subcategory } = data;
   console.log(data);
   return (
     <div>
       <div
         className="flex my-5 rounded-xl justify-center items-center"
         style={{
-          backgroundImage: `url(${imgUrl})`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url(${imgUrl})`,
           backgroundPosition: "center",
           height: "50vh",
         }}>
-        <h3 className="text-center font-semibold text-3xl">Details food</h3>
+        <h3 className="text-center text-white font-semibold text-3xl">Details food</h3>
       </div>
 
-      <div className="flex mb-10  gap-5">
+      <div className="flex items-center mb-10 border-t-2 py-5  gap-5">
         <div className="w-1/2">
           <img
             src={imgUrl}
             alt=""
+            className="rounded-lg"
           />
         </div>
+        <div className="w-[2px] h-[224px] bg-red-700"></div>
         <div className="flex-1 items-center space-y-3 text-white">
           <h2>
             <span className="font-semibold">Name : </span>
@@ -40,7 +42,11 @@ const FoodDEtails = () => {
           </p>
           <h2>
             <span className="font-semibold">Made by : </span>
-            {food_origin}
+            {userName}
+          </h2>
+          <h2>
+            <span className="font-semibold">Country : </span>
+            {country || 'INDIA'}
           </h2>
           <h2>
             <span className="font-semibold">Price : </span>

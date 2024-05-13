@@ -1,13 +1,14 @@
 /** @format */
 
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 
 const Register = () => {
   const  {createUser} = useContext(authContext)
   const [err, setErr] = useState('')
+  const navigate = useNavigate()
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -16,13 +17,24 @@ const Register = () => {
     const email = form.email.value;
     const photo = form.photo.value;
     const password = form.password.value;
+    const uppercase = /[A-Z]/.test(password);
+    const lowercase = /[a-z]/.test(password);
+    if(!uppercase) {
+      return toast.error('Password must contain at least one uppercase character.')
+    }
+    else if(!lowercase) {
+      return toast.error('Password must contain at least one lowercase character.')
+    }
+    else if (password.length < 6) {
+      return toast.error('Password must be six charecter or longer')
+    }
     const user = {name, email, photo};
     console.log(name, email,password);
     createUser(email, password)
     .then(result => {
       console.log(result.user);
       toast.success('Registeration successful')
-      window.location.reload()
+      navigate('/')
     })
     .catch(error => {
       console.log(error);

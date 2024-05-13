@@ -24,9 +24,11 @@ const Slider = () => {
               data-aos-duration="1000"
               className=" text-white md:w-[70%] mx-auto text-center">
               <h2 className="md:text-2xl lg:text-6xl leading-snug text-2xl font-bold mb-3">
-                <span className="text-[#b65a18]">Choosing The  .</span>
+                <span>Choosing The  .</span>
                 <Typewriter  
+                 className="text-[#b65a18]"
                   loop
+                  delaySpeed={2000}
                   cursor
                   words={["Best", "Food", "Items"]}
                   cursorStyle="|"

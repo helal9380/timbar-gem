@@ -18,9 +18,9 @@ const AddFood = () => {
     const userName = form.username.value;
     const userEmail = form.email.value;
     const country = form.country.value;
-    console.log(subcategory);
+    console.log(country);
     const foods = {
-      id,
+ 
       imgUrl,
       name,
       country,
@@ -31,7 +31,7 @@ const AddFood = () => {
       userEmail,
       userName,
     };
-
+console.log(foods);
     fetch("http://localhost:5000/addFood", {
       method: "POST",
       headers: {
@@ -65,7 +65,7 @@ const AddFood = () => {
               />
             </label>
             <label className="input input-bordered flex items-center gap-2">
-              <p className="md:w-24 w-28">Food Name</p>
+              <p className="md:w-28 w-28">Food Name</p>
               <input
                 type="text"
                 name="foodName"
@@ -73,17 +73,17 @@ const AddFood = () => {
               />
             </label>
             <label className="input  input-bordered flex items-center gap-2">
-              <p className="w-32">Category name</p>
+              <p className="w-40">Category name</p>
               <select
                 name="subCategory"
                 id=""
                 type="text"
-                className="grow w-ful bg-transparent">
+                className="grow w-full">
                 <option
                   className="font-semibold"
                   disabled
                   selected
-                  value=""></option>
+                  value="Category"></option>
                 <option
                   className="font-semibold"
                   value="Recipes Galore">

@@ -1,13 +1,20 @@
 /** @format */
 
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import { authContext } from "../AuthProvider/AuthProvider";
 
 const MyOrdered = () => {
-  const myOrder = useLoaderData();
-  const [foods, setFoods] = useState(myOrder)
-  console.log(myOrder);
+  const { user } = useContext(authContext);
+  const [myFoods, setMyfoods] = useState([]);
+
+  console.log(myFoods);
+  useEffect(() => {
+    fetch(`http://localhost:5000/myOrders/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setMyfoods(data));
+  }, []);
 
   const handleDelete = (id) => {
     console.log(id);
@@ -33,9 +40,10 @@ const MyOrdered = () => {
                 icon: "success",
               });
             }
+            
           });
-          const remaing = foods.filter(item => item._id !== id);
-          setFoods(remaing)
+        const remaing = myFoods.filter(item => item._id !== id);
+        setMyfoods(remaing)
       }
     });
     // fetch(`http://localhost:5000/all_foods/${id}`, {
@@ -52,43 +60,37 @@ const MyOrdered = () => {
         My Ordered Foods
       </h3>
       <div className="w-40 h-[2px] bg-red-500 mx-auto mb-5"></div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {foods.map((item) => (
-          <div
-            key={item._id}
-            className=" p-4 border-2 flex gap-4 border-[#b65a18] rounded">
-            <figure className="">
-              <img
-                className="w-1/2"
-                src={item?.imgUrl}
-                alt="Shoes"
-              />
-            </figure>
-            <div className="flex-1">
-              <h2 className="text-xl font-semibold my-3">{item?.foodName}</h2>
-              <div className="px-4 space-y-2 border-l-2 border-[#b65a18]">
-                <p>
-                  <span className="font-semibold">Food owner :</span>{" "}
-                  {item?.buyerName}
-                </p>
-                <p>
-                  <span className="font-semibold">Date :</span> {item?.date}
-                </p>
-
-                <p>
-                  <span className="font-semibold">Price :</span> {item.price}
-                </p>
-              </div>
-              <div className=" justify-end my-5">
-                <button
+      <div className="overflow-x-auto">
+        <table className="table table-zebra">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Food Name</th>
+              <th>Email</th>
+              <th>Price</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* row 1 */}
+            {myFoods.map((item, index) => (
+              <tr>
+                <th>{index + 1}</th>
+                <td>{item?.foodName}</td>
+                <td>{item?.email}</td>
+                <td>{item.price}</td>
+                <th>
+                  <button
                   onClick={() => handleDelete(item._id)}
-                  className="py-2 px-5 transition-all border border-[#b65a18] text-[#b65a18] font-bold rounded-bl-full hover:bg-[#b65a18] hover:text-white ease-in">
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
+                    className="btn btn-ghost btn-xs">
+                    Delete
+                  </button>
+                </th>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

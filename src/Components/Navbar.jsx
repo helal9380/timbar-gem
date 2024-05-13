@@ -25,6 +25,7 @@ const Navbar = () => {
         to={"/gallery"}>
         <a>Gallery</a>
       </NavLink>
+    
     </>
   );
 
@@ -37,7 +38,7 @@ const Navbar = () => {
   return (
     <div>
       <div className="flex items-center justify-between px-5">
-        <div className="navbar w-40">
+        <div className="navbar w-60">
           <div className="dropdown">
             <div
               tabIndex={0}
@@ -59,15 +60,11 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+              className="menu  dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
               {links}
             </ul>
           </div>
-          <img
-            className="w-40"
-            src={logo}
-            alt=""
-          />
+        <h3 className="text-2xl font-semibold w-60">Bite Spot Cafe</h3>
         </div>
         <div className="flex">
           <div className=" hidden lg:flex">
@@ -75,12 +72,13 @@ const Navbar = () => {
           </div>
         </div>
         {
-          user ? <div className="dropdown dropdown-end">
+          user ? <div className="dropdown flex gap-5 dropdown-end">
+            <button className="font-semibold" onClick={handleLogOut}>Logout</button>
           <div
             tabIndex={0}
             role="button"
-            className="btn btn-ghost btn-circle avatar">
-              
+            className="btn  btn-ghost btn-circle avatar">
+             
             <div className="w-10 rounded-full">
               <img
                 alt="Tailwind CSS Navbar component"
@@ -90,7 +88,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="mt-3 space-y-2 z-10 p-2 shadow menu menu-md dropdown-content bg-base-100 rounded-box text-white w-52">
+            className="mt-12 space-y-2 z-10 p-2 shadow menu menu-md dropdown-content bg-base-100 rounded-box text-white w-52">
             <li className="border-b border-[#b65a18]">
               <Link to={'/myFoods'} className="justify-between">My foods</Link>
             </li>
@@ -98,11 +96,9 @@ const Navbar = () => {
               <Link to={'/addFood'}>Add a food</Link>
             </li>
             <li className="border-b border-[#b65a18]">
-              <Link to={'/myOrdered'}>My ordered</Link>
+              <Link to={'/myOrders'}>My ordered</Link>
             </li>
-            <li>
-              <button onClick={handleLogOut}>Logout</button>
-            </li>
+            
           </ul>
         </div> : <Link className="text-lg font-semibold" to={'/login'}>Login</Link>
         }

@@ -7,14 +7,31 @@ import { useNavigate } from "react-router-dom";
 
 const Gallery = () => {
   const [images, setImages] = useState([]);
-  const navigate = useNavigate()
-  const {user} = useContext(authContext)
+  const navigate = useNavigate();
+  const { user } = useContext(authContext);
   useEffect(() => {
     fetch("http://localhost:5000/gallery")
       .then((res) => res.json())
       .then((data) => setImages(data));
   }, []);
+
+
   console.log(images);
+  const handleUpdate = (e,id) => {
+    const form = e.target;
+    const feedback = form.feedback.value;
+    const img = form.img.value;
+    const feedbackUser = {feedback, img};
+    console.log(feedbackUser);
+ 
+    fetch(`http://localhost:5000/feedback/${id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify(feedbackUser)
+    })
+  };
   return (
     <div>
       <div
@@ -26,15 +43,15 @@ const Gallery = () => {
           backgroundSize: "cover",
           height: "30vh",
         }}>
-        <h2 className="text-4xl font-semibold text-white">Our Gallery</h2>
+        <h2 className="text-4xl font-semibold text-white">Gallery</h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 my-10">
-        {images.map((image) => (
+        {images?.map((item) => (
           <div
             className="relative"
-            key={image.id}>
+            key={item?.id}>
             <img
-              src={image.food_image}
+              src={item?.imgUrl}
               alt=""
               style={{
                 transition: "transform 0.3s ease",
@@ -43,13 +60,14 @@ const Gallery = () => {
             />
             <div className="absolute top-0 p-5 bg-[#000000ab] w-full h-full opacity-0 hover:opacity-100">
               <h3>
-                <span>Name : </span>
-                {image.food_name}
+                <span className="font-semibold">Name : </span>
+                {item?.name}
               </h3>
               <h3>
-                <span>Price : </span>
-                {image.price}
+                <span className="font-semibold">Price : </span>
+                {item?.pric}
               </h3>
+             
               {/* You can open the modal using document.getElementById('ID').showModal() method */}
               <button
                 className="py-1 mt-5 px-4 border border-red-600 rounded-lg"
@@ -68,11 +86,31 @@ const Gallery = () => {
                       ✕
                     </button>
                   </form>
-                  <input type="text" readOnly defaultValue={user?.displayName} className="input input-bordered input-md w-full " />
-                  <input type="text" placeholder="Description"  className="input input-bordered input-md w-full my-5 " />
-                  <input type="text" placeholder="Image Url" className="input input-bordered input-md w-full " />
-                  <input type="text" placeholder="Feedback" className="input input-bordered mt-2 input-md w-full " />
-                  
+                  <form>
+                  <input
+                    type="text"
+                    name="name"
+                    readOnly
+                    defaultValue={user?.displayName || "user name"}
+                    className="input input-bordered input-md w-full "
+                  />
+
+                  <input
+                    type="text"
+                    name="feedback"
+                    placeholder="Feedback"
+                    className="input input-bordered mt-5 input-md w-full "
+                  />
+                  <input
+                    type="text"
+                    name="img"
+                    placeholder="Image Url"
+                    defaultValue={item?.imgUrl}
+                    className="input input-bordered mt-5 input-md w-full "
+                  />
+           
+                  <button onClick={() => handleUpdate(item._id)}  className="cursor-pointer my-3 py-1 px-4 bg-red-600 font-white font-semibold rounded">Feedback</button>
+                  </form>
                 </div>
               </dialog>
             </div>
