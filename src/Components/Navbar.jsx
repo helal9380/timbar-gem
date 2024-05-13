@@ -98,7 +98,7 @@ const Navbar = () => {
               <Link to={'/addFood'}>Add a food</Link>
             </li>
             <li className="border-b border-[#b65a18]">
-              <Link to={'/'}>My ordered</Link>
+              <Link to={'/myOrdered'}>My ordered</Link>
             </li>
             <li>
               <button onClick={handleLogOut}>Logout</button>

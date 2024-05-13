@@ -55,7 +55,7 @@ const MyFoods = () => {
                     <td>{food?.userEmail}</td>
                     <td>{food?.pric}</td>
                     <th>
-                      <Link to={'/update'} className="btn btn-ghost btn-xs">details</Link>
+                      <Link to={`/all_foods/${food?._id}`} className="btn btn-ghost btn-xs">Upate</Link>
                     </th>
                   </tr>
                 ))}

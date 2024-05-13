@@ -17,12 +17,13 @@ const AddFood = () => {
     const pric = form.price.value;
     const userName = form.username.value;
     const userEmail = form.email.value;
-    const id = form.id.value;
+    const country = form.country.value;
     console.log(subcategory);
     const foods = {
       id,
       imgUrl,
       name,
+      country,
       subcategory,
       shortDes,
       pric,
