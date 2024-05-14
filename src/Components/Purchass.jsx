@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 const Purchass = () => {
   const purchassed = useLoaderData();
-  const naviate = useNavigate()
+  const naviate = useNavigate();
   const { user } = useContext(authContext);
   console.log(purchassed);
 
@@ -15,6 +15,7 @@ const Purchass = () => {
     e.preventDefault();
     const form = e.target;
     const foodName = form.foodName.value;
+    const foodImg = form.foodImg.value;
     const quantity = form.quantity.value;
     const buyerName = form.buyerName.value;
     const price = form.price.value;
@@ -23,28 +24,30 @@ const Purchass = () => {
     const purchassedInformation = {
       foodName,
       quantity,
+      foodImg,
       buyerName,
       price,
       email,
       date,
+      count: 0,
     };
-    console.log(purchassedInformation);
-    fetch('http://localhost:5000/addPurchass', {
-        method: 'POST',
-        headers: {
-            'content-type' : 'application/json'
-        },
-        body: JSON.stringify(purchassedInformation)
+    // console.log(purchassedInformation);
+    fetch("http://localhost:5000/addPurchass", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(purchassedInformation),
     })
-    .then(data => {
+      .then((data) => {
         console.log(data);
-        toast.success('Congratulation!!')
-        naviate('/')
-
-    })
-    .catch(err => {
+        toast.success("Successfully purchass!!");
+        naviate("/");
+      })
+      .catch((err) => {
         console.log(err);
-    })
+        toast.err('Something wrong')
+      });
   };
   return (
     <div className="w-[80%] mx-auto">
@@ -58,12 +61,21 @@ const Purchass = () => {
         <div className="flex gap-5 w-full mb-5">
           <div className="w-full space-y-8">
             <label className="input input-bordered flex items-center gap-2">
+              <span className="w-40">Food Image :</span>
+              <input
+                type="text"
+                name="foodImg"
+                className="grow w-full"
+                defaultValue={purchassed.imgUrl}
+              />
+            </label>
+            <label className="input input-bordered flex items-center gap-2">
               <span className="w-32">Food name :</span>
               <input
                 type="text"
                 name="foodName"
                 className="grow w-full"
-                defaultValue={purchassed.food_name}
+                defaultValue={purchassed.name}
               />
             </label>
             <label className="input input-bordered flex items-center gap-2">
@@ -93,7 +105,7 @@ const Purchass = () => {
                 type="text"
                 name="price"
                 className="grow w-full"
-                defaultValue={purchassed.price}
+                defaultValue={purchassed.pric}
               />
             </label>
             <label className="input input-bordered flex items-center gap-2">
@@ -114,13 +126,13 @@ const Purchass = () => {
                 defaultValue={new Date().toLocaleTimeString()}
               />
             </label>
+            <input
+              className="text-center font-semibold btn w-full hover:bg-[#b61818bf] bg-[#b61818]"
+              type="submit"
+              value="Purchass now"
+            />
           </div>
         </div>
-        <input
-          className="text-center font-semibold btn w-full hover:bg-[#b61818bf] bg-[#b61818]"
-          type="submit"
-          value="Purchass now"
-        />
       </form>
     </div>
   );

@@ -17,7 +17,7 @@ const Navbar = () => {
       </NavLink>
       <NavLink
         className="text-xl mr-4 underline"
-        to={"/all_foods"}>
+        to={"/allFoods"}>
         <a>All Foods</a>
       </NavLink>
       <NavLink

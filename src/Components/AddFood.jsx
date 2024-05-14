@@ -30,6 +30,7 @@ const AddFood = () => {
       quantity,
       userEmail,
       userName,
+      count: 0
     };
 console.log(foods);
     fetch("http://localhost:5000/addFood", {
