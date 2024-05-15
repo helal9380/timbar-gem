@@ -5,7 +5,7 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   daisyui: {
-    themes: ["halloween"],
+    themes: ["light", "dark"],
   },
   plugins: [
     require('daisyui'),
