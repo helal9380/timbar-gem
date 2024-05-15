@@ -1,5 +1,6 @@
 /** @format */
 
+import { Helmet } from "react-helmet-async";
 import { Link, useLoaderData } from "react-router-dom";
 
 const FoodDEtails = () => {
@@ -8,6 +9,9 @@ const FoodDEtails = () => {
   console.log(data);
   return (
     <div>
+      <Helmet>
+        <title>Bite Spot Cafe | food details</title>
+      </Helmet>
       <div
         className="flex my-5 rounded-xl justify-center items-center"
         style={{
@@ -27,7 +31,7 @@ const FoodDEtails = () => {
           />
         </div>
         <div className="w-[2px] h-[224px] bg-red-700"></div>
-        <div className="flex-1 items-center space-y-3 text-white">
+        <div className="flex-1 items-center space-y-3">
           <h2>
             <span className="font-semibold">Name : </span>
             {name}
@@ -52,7 +56,7 @@ const FoodDEtails = () => {
             <span className="font-semibold">Price : </span>
             {pric}
           </h2>
-          <div className="py-2 px-5 font-semibold text-center bg-[#b61818] rounded-lg mt-3">
+          <div className="py-2 px-5 text-white font-semibold text-center bg-[#b61818] rounded-lg mt-3">
             <Link to={`/purchass/${_id}`}>Purchase</Link>
           </div>
         </div>

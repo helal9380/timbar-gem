@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { authContext } from "../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Update = () => {
   const updatedData = useLoaderData();
@@ -46,6 +47,9 @@ const Update = () => {
   };
   return (
     <div className="text-center bg-[] max-w-screen-lg mx-auto">
+      <Helmet>
+        <title>Bite Spot Cafe | update</title>
+      </Helmet>
       <h3 className="text-3xl font-semibold mt-5"> Update Food item</h3>
       <form
         onSubmit={handleUpdate}

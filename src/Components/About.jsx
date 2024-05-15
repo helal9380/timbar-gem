@@ -1,10 +1,14 @@
 /** @format */
 
+import { Helmet } from "react-helmet-async";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
 const About = () => {
   return (
     <div>
+      <Helmet>
+        <title>Bite Spot Cafe | about</title>
+      </Helmet>
       <div className="text-center">
         <h2 className="text-3xl font-semibold my-4">
           About 

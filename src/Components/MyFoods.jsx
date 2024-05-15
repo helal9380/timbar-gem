@@ -3,6 +3,7 @@
 import { useContext, useEffect, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const MyFoods = () => {
   const [myFoods, setMyfoods] = useState([]);
@@ -17,6 +18,9 @@ const MyFoods = () => {
   console.log(myFoods);
   return (
     <div className="my-10">
+      <Helmet>
+        <title>Bite Spot Cafe | my foods</title>
+      </Helmet>
       <h3 className="text-3xl font-semibold text-center">
         My all foods {myFoods.length}
       </h3>

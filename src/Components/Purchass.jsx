@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { authContext } from "../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Purchass = () => {
   const purchassed = useLoaderData();
@@ -51,6 +52,9 @@ const Purchass = () => {
   };
   return (
     <div className="w-[80%] mx-auto">
+      <Helmet>
+        <title>Bite Spot Cafe | purchase</title>
+      </Helmet>
       <h3 className="text-3xl font-semibold my-5 text-center">
         Food purchase information
       </h3>

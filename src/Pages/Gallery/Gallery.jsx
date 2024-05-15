@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { authContext } from "../../AuthProvider/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Gallery = () => {
   const [images, setImages] = useState([]);
@@ -34,6 +35,9 @@ const Gallery = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Bite Spot Cafe | gallery</title>
+      </Helmet>
       <div
         className="flex justify-center items-center"
         style={{

@@ -4,11 +4,12 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
-  const  {createUser} = useContext(authContext)
-  const [err, setErr] = useState('')
-  const navigate = useNavigate()
+  const { createUser } = useContext(authContext);
+  const [err, setErr] = useState("");
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -19,44 +20,46 @@ const Register = () => {
     const password = form.password.value;
     const uppercase = /[A-Z]/.test(password);
     const lowercase = /[a-z]/.test(password);
-    if(!uppercase) {
-      return toast.error('Password must contain at least one uppercase character.')
+    if (!uppercase) {
+      return toast.error(
+        "Password must contain at least one uppercase character."
+      );
+    } else if (!lowercase) {
+      return toast.error(
+        "Password must contain at least one lowercase character."
+      );
+    } else if (password.length < 6) {
+      return toast.error("Password must be six charecter or longer");
     }
-    else if(!lowercase) {
-      return toast.error('Password must contain at least one lowercase character.')
-    }
-    else if (password.length < 6) {
-      return toast.error('Password must be six charecter or longer')
-    }
-    const user = {name, email, photo};
-    console.log(name, email,password);
+    const user = { name, email, photo };
+    console.log(name, email, password);
     createUser(email, password)
-    .then(result => {
-      console.log(result.user);
-      toast.success('Registeration successful')
-      navigate('/')
-    })
-    .catch(error => {
-      console.log(error);
-      toast.error('Somthing error')
-    })
+      .then((result) => {
+        console.log(result.user);
+        toast.success("Registeration successful");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Somthing error");
+      });
 
-    fetch('https://restaurant-server-ten.vercel.app/users', {
-      method: 'POST',
+    fetch("https://restaurant-server-ten.vercel.app/users", {
+      method: "POST",
       headers: {
-        'content-type' : 'application/json'
+        "content-type": "application/json",
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(user),
     })
-    .then(result => {
-      console.log(result);
-      toast.success('User successfully added')
-    })
-    .catch(err => {
-      console.log(err);
-      setErr('Sorry somthing wrong')
-    })
-  }
+      .then((result) => {
+        console.log(result);
+        toast.success("User successfully added");
+      })
+      .catch((err) => {
+        console.log(err);
+        setErr("Sorry somthing wrong");
+      });
+  };
 
   return (
     <div
@@ -67,12 +70,19 @@ const Register = () => {
         padding: "32px",
         backgroundRepeat: "no-repeat",
       }}>
+      <Helmet>
+        <title>Bite Spot Cafe | register</title>
+      </Helmet>
       <div className="w-[40%] mx-auto rounded-xl border border-gray-400 bg-[rgba(0,0,0,0.4)] text-white">
-        <h1 className="text-xl md:text-4xl font-bold text-center mt-5">Sign Up now!</h1>
-        <form onSubmit={handleRegister} className="card-body">
+        <h1 className="text-xl md:text-4xl font-bold text-center mt-5">
+          Sign Up now!
+        </h1>
+        <form
+          onSubmit={handleRegister}
+          className="card-body">
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Name</span>
+              <span className="label-text text-white">Name</span>
             </label>
             <input
               type="text"
@@ -83,7 +93,7 @@ const Register = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text text-white">Email</span>
             </label>
             <input
               type="email"
@@ -95,19 +105,18 @@ const Register = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Photo url</span>
+              <span className="label-text text-white">Photo url</span>
             </label>
             <input
               type="text"
               name="photo"
               placeholder="Photo URL"
               className="input input-bordered"
-          
             />
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text text-white">Password</span>
             </label>
             <input
               type="password"
@@ -126,11 +135,14 @@ const Register = () => {
                 </Link>
               </p>
             </label>
-
           </div>
           <p className="text-red-500 font-semibold">{err}</p>
           <div className="form-control mt-6">
-         <input className="bg-[#e7272d] py-2 rounded-lg" type="submit" value="Register" />
+            <input
+              className="bg-[#e7272d] py-2 rounded-lg"
+              type="submit"
+              value="Register"
+            />
           </div>
         </form>
       </div>

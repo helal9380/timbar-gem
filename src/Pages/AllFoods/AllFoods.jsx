@@ -1,6 +1,7 @@
 /** @format */
 
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link, useLoaderData } from "react-router-dom";
 
 const AllFoods = () => {
@@ -13,7 +14,9 @@ const AllFoods = () => {
     const search = form.search.value;
 
     fetch(
-      `https://restaurant-server-ten.vercel.app/searchFoods?name=${encodeURIComponent(search)}`
+      `https://restaurant-server-ten.vercel.app/searchFoods?name=${encodeURIComponent(
+        search
+      )}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -23,6 +26,9 @@ const AllFoods = () => {
 
   return (
     <div className="mt-5">
+       <Helmet>
+    <title>Bite Spot Cafe | all foods</title>
+   </Helmet>
       <div
         className="rounded-lg flex justify-center items-center"
         style={{
@@ -33,17 +39,12 @@ const AllFoods = () => {
           backgroundSize: "cover",
           height: "40vh",
         }}>
-        <h3 className="text-3xl font-semibold">All Food</h3>
-      </div>
-      <div className="flex justify-center mt-10">
         <div>
-          <form onSubmit={handleSearch}>
-            <input
-              type="text"
-              className="p-2 outline-0"
-              name="search"
-              placeholder="Search Food"
-            />
+          <h3 className="text-3xl text-center my-2 text-white font-semibold">All Food</h3>
+          <form className="flex gap-2" onSubmit={handleSearch}>
+           
+            <input type="text" name="search"
+              placeholder="Search Food" className="input input-bordered w-full max-w-xs" />
             <input
               className="btn ml-2"
               type="submit"
@@ -52,6 +53,7 @@ const AllFoods = () => {
           </form>
         </div>
       </div>
+      <div className="flex justify-center mt-5"></div>
       <div className="grid grid-cols-1 mt-10 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {searchResults.map((item) => (
           <div

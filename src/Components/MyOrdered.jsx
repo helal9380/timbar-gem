@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { authContext } from "../AuthProvider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const MyOrdered = () => {
   const { user } = useContext(authContext);
@@ -56,6 +57,9 @@ const MyOrdered = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Bite Spot Cafe | my order</title>
+      </Helmet>
       <h3 className="text-3xl font-semibold my-5 text-center">
         My Ordered Foods
       </h3>

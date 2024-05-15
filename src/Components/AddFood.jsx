@@ -3,6 +3,7 @@
 import { useContext } from "react";
 import toast from "react-hot-toast";
 import { authContext } from "../AuthProvider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const AddFood = () => {
   const { user } = useContext(authContext);
@@ -51,6 +52,9 @@ console.log(foods);
   };
   return (
     <div className="text-center max-w-screen-lg mx-auto">
+      <Helmet>
+        <title>Bite Spot Cafe | add food</title>
+      </Helmet>
       <h3 className="text-3xl font-semibold mt-5"> Add Food Item</h3>
       <form
         onSubmit={handleAdd}

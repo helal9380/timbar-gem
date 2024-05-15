@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [err, setErr] = useState('')
@@ -42,6 +43,7 @@ const Login = () => {
   }
   return (
     <div
+    
       style={{
         backgroundImage: "url(https://i.ibb.co/cygdknh/15.jpg)",
         backgroundSize: "cover",
@@ -49,12 +51,15 @@ const Login = () => {
         padding: "32px",
         backgroundRepeat: "no-repeat",
       }}>
-      <div className="w-[40%] mx-auto rounded-xl border border-gray-400 bg-[rgba(0,0,0,0.4)] text-white">
+   <Helmet>
+    <title>Bite Spot Cafe | login</title>
+   </Helmet>
+      <div className="w-[40%] mx-auto rounded-xl text-white border border-gray-400 bg-[rgba(0,0,0,0.4)] ">
         <h1 className=" text-xl md:text-4xl font-bold text-center mt-5">Login now!</h1>
         <form onSubmit={handleLogin} className="card-body">
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text text-white">Email</span>
             </label>
             <input
               type="email"
@@ -66,7 +71,7 @@ const Login = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text text-white">Password</span>
             </label>
             <input
               type="password"
