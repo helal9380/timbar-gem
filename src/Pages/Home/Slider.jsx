@@ -38,7 +38,7 @@ const Slider = () => {
               <p className=" md:w-1/2 mx-auto mb-5 hidden md:block">
               Embark on a culinary journey around the world with TastyTrekker.com. Discover exotic flavors, traditional recipes
               </p>
-              <Link to={'/all_foods'}
+              <Link to={'/allFoods'}
                 className="py-2 px-4 border border-[#b65a18] rounded-lg font-bold">
                 All Foods
               </Link>
@@ -64,7 +64,7 @@ const Slider = () => {
               <p className="mb-5 md:w-1/2 mx-auto hidden md:block">
               Delight your taste buds with the freshest ingredients and seasonal delights. From vibrant spring salads to cozy winter stews, TastyTrekker.com brings you recipes that celebrate the flavors of each season.
               </p>
-              <Link to={'/all_foods'}
+              <Link to={'/allFoods'}
                 className="py-2 px-4 border border-[#b65a18] rounded-lg font-bold">
                 All Foods
               </Link>
@@ -90,7 +90,7 @@ const Slider = () => {
               <p className="mb-5 hidden  md:w-1/2 mx-auto md:block">
               Elevate your weekend brunch experience with mouthwatering recipes and creative twists on classic favorites. Whether you're hosting a gathering or enjoying a leisurely morning at home,
               </p>
-              <Link to={'/all_foods'}
+              <Link to={'/allFoods'}
                 className="py-2 px-4 border border-[#b65a18] rounded-lg font-bold">
                 All Foods
               </Link>

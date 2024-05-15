@@ -37,7 +37,7 @@ const AllFoods = () => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           backgroundSize: "cover",
-          height: "40vh",
+          height: "50vh",
         }}>
         <div>
           <h3 className="text-3xl text-center my-2 text-white font-semibold">All Food</h3>
@@ -46,7 +46,7 @@ const AllFoods = () => {
             <input type="text" name="search"
               placeholder="Search Food" className="input input-bordered w-full max-w-xs" />
             <input
-              className="btn ml-2"
+              className="py-2 px-5 bg-[#b63518] font-semibold text-white rounded-md ml-2"
               type="submit"
               value="Search"
             />

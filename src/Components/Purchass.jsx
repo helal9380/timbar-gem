@@ -41,9 +41,10 @@ const Purchass = () => {
       body: JSON.stringify(purchassedInformation),
     })
       .then((data) => {
+  
         console.log(data);
         toast.success("Successfully purchass!!");
-        naviate("/");
+        naviate("/allFoods");
       })
       .catch((err) => {
         console.log(err);
@@ -131,7 +132,7 @@ const Purchass = () => {
               />
             </label>
             <input
-              className="text-center font-semibold btn w-full hover:bg-[#b61818bf] bg-[#b61818]"
+              className="text-center text-white font-semibold btn w-full hover:bg-[#b61818bf] bg-[#b61818]"
               type="submit"
               value="Purchass now"
             />

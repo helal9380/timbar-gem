@@ -14,7 +14,7 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "bg-[#b65a18] md:text-xl font-semibold ml-2 text-white py-1 lg:px-5 px-3 rounded-lg"
+            ? "bg-[#b63518] md:text-xl font-semibold ml-2 text-white py-1 lg:px-5 px-3 rounded-lg"
             : "py-1 lg:px-3 px-3 md:text-xl font-semibold"
         }
         to={"/"}>
@@ -23,7 +23,7 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "bg-[#b65a18] md:text-xl font-semibold ml-2 text-white py-1 lg:px-5 px-3 rounded-lg"
+            ? "bg-[#b63518] md:text-xl font-semibold ml-2 text-white py-1 lg:px-5 px-3 rounded-lg"
             : "py-1 lg:px-3 px-3 md:text-xl font-semibold"
         }
         to={"/allFoods"}>
@@ -32,7 +32,7 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "bg-[#b65a18] md:text-xl font-semibold ml-2 text-white py-1 lg:px-5 px-3 rounded-lg"
+            ? "bg-[#b63518] md:text-xl font-semibold ml-2 text-white py-1 lg:px-5 px-3 rounded-lg"
             : "py-1 lg:px-3 px-3 md:text-xl font-semibold"
         }
         to={"/gallery"}>

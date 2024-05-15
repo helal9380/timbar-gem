@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
 export const authContext = createContext(null);
 const auth = getAuth(app);
@@ -41,6 +42,11 @@ const AuthProvider = ({ children }) => {
       if (currntUser) {
         console.log("user ace", currntUser);
         setUser(currntUser);
+        const loggedUser = {email: currntUser.email};
+        axios.post('https://restaurant-server-ten.vercel.app/jwt',loggedUser, {withCredentials: true})
+        .then(res => {
+          console.log('token',res.data);
+        })
       }
       setLoading(false);
     });

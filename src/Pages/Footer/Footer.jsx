@@ -73,7 +73,7 @@ const Footer = () => {
             </div>
           </nav>
           <aside>
-            <p>Copyright © 2024 - All right reserved by Timber Gem</p>
+            <p>Copyright © 2024 - All right reserved by Bite Spot Cafe</p>
           </aside>
         </footer>
       </div>
