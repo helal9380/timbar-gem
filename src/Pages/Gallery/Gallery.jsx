@@ -11,7 +11,7 @@ const Gallery = () => {
   const navigate = useNavigate();
   const { user } = useContext(authContext);
   useEffect(() => {
-    fetch("http://localhost:5000/gallery")
+    fetch("https://restaurant-ec162.web.app/gallery")
       .then((res) => res.json())
       .then((data) => setImages(data));
   }, []);
@@ -25,7 +25,7 @@ const Gallery = () => {
     const feedbackUser = {feedback, img};
     console.log(feedbackUser);
  
-    fetch(`http://localhost:5000/feedback/${id}`, {
+    fetch(`https://restaurant-ec162.web.app/feedback/${id}`, {
       method: 'PUT',
       headers: {
         'content-type' : 'application/json'

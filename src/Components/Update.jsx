@@ -28,7 +28,7 @@ const Update = () => {
       pric,
     };
 
-    fetch(`http://localhost:5000/update/${updatedData._id}`, {
+    fetch(`https://restaurant-ec162.web.app/update/${updatedData._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

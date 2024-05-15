@@ -12,7 +12,7 @@ const MyOrdered = () => {
 
   console.log(myFoods);
   useEffect(() => {
-    fetch(`http://localhost:5000/myOrders/${user?.email}`, {credentials: 'include'})
+    fetch(`https://restaurant-ec162.web.app/myOrders/${user?.email}`, {credentials: 'include'})
       .then((res) => res.json())
       .then((data) => setMyfoods(data));
   }, []);
@@ -29,7 +29,7 @@ const MyOrdered = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/all_foods/${id}`, {
+        fetch(`https://restaurant-ec162.web.app/all_foods/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -47,7 +47,7 @@ const MyOrdered = () => {
         setMyfoods(remaing)
       }
     });
-    // fetch(`http://localhost:5000/all_foods/${id}`, {
+    // fetch(`https://restaurant-ec162.web.app/all_foods/${id}`, {
     //   method: "DELETE",
     // })
     //   .then((res) => res.json())
