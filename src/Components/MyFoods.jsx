@@ -10,7 +10,7 @@ const MyFoods = () => {
 
   console.log(user?.email);
   useEffect(() => {
-    fetch(`http://localhost:5000/myFoods/${user?.email}`)
+    fetch(`https://restaurant-server-ten.vercel.app/myFoods/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyfoods(data));
   }, []);

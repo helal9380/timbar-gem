@@ -17,8 +17,8 @@
 .slide1 {
   background-image: linear-gradient(
       to right,
-      rgba(28, 11, 11, 0.7),
-      rgba(94, 0, 0, 0.7)
+      rgba(0, 0, 0, 0.793),
+      rgba(0, 0, 0, 0.7)
     ),
     url("https://i.ibb.co/C2HFCMy/shourav-sheikh-a66s-Gf-Onnq-Q-unsplash-3.jpg");
   border-radius: 8px;
@@ -27,8 +27,8 @@
 .slide2 {
   background-image: linear-gradient(
       to right,
-      rgba(94, 0, 0, 0.7),
-      rgba(91, 0, 0, 0.7)
+      rgba(0, 0, 0, 0.793),
+      rgba(0, 0, 0, 0.7)
     ),
     url("https://i.ibb.co/T0W6TMC/kelvin-t-Ac-A8mo-Ii-D3g-unsplash.jpg");
   border-radius: 8px;
@@ -36,8 +36,8 @@
 .slide3 {
   background-image: linear-gradient(
       to right,
-      rgba(117, 89, 89, 0.7),
-      rgba(87, 0, 0, 0.7)
+      rgba(0, 0, 0, 0.793),
+      rgba(0, 0, 0, 0.7)
     ),
     url("https://i.ibb.co/GswvRzc/lily-banse-YHSwy6uqvk-unsplash.jpg");
   border-radius: 8px;

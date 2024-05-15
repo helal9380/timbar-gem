@@ -11,7 +11,7 @@ const MyOrdered = () => {
 
   console.log(myFoods);
   useEffect(() => {
-    fetch(`http://localhost:5000/myOrders/${user?.email}`)
+    fetch(`https://restaurant-server-ten.vercel.app/myOrders/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyfoods(data));
   }, []);
@@ -28,7 +28,7 @@ const MyOrdered = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/all_foods/${id}`, {
+        fetch(`https://restaurant-server-ten.vercel.app/all_foods/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -46,7 +46,7 @@ const MyOrdered = () => {
         setMyfoods(remaing)
       }
     });
-    // fetch(`http://localhost:5000/all_foods/${id}`, {
+    // fetch(`https://restaurant-server-ten.vercel.app/all_foods/${id}`, {
     //   method: "DELETE",
     // })
     //   .then((res) => res.json())

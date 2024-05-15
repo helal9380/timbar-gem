@@ -13,7 +13,7 @@ const AllFoods = () => {
     const search = form.search.value;
 
     fetch(
-      `http://localhost:5000/searchFoods?name=${encodeURIComponent(search)}`
+      `https://restaurant-server-ten.vercel.app/searchFoods?name=${encodeURIComponent(search)}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -71,11 +71,11 @@ const AllFoods = () => {
               </p>
               <p>
                 <span className="font-semibold">Price : </span>
-                {item.price}
+                {item?.pric}
               </p>
               <p>
                 <span className="font-semibold">Add By : </span>
-                {item.userName}
+                {item?.userName}
               </p>
               <div className="card-actions">
                 <Link

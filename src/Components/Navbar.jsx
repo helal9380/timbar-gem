@@ -11,21 +11,20 @@ const Navbar = () => {
   const links = (
     <>
       <NavLink
-        className="text-xl mr-4 underline"
+        className="md:text-xl mr-4 underline"
         to={"/"}>
         <a>Home</a>
       </NavLink>
       <NavLink
-        className="text-xl mr-4 underline"
+        className="md:text-xl mr-4 underline"
         to={"/allFoods"}>
         <a>All Foods</a>
       </NavLink>
       <NavLink
-        className="text-xl mr-4 underline"
+        className="md:text-xl mr-4 underline"
         to={"/gallery"}>
         <a>Gallery</a>
       </NavLink>
-    
     </>
   );
 
@@ -37,13 +36,13 @@ const Navbar = () => {
   };
   return (
     <div>
-      <div className="flex items-center justify-between px-5">
+      <div className="flex items-center justify-between px-2">
         <div className="navbar w-60">
           <div className="dropdown">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost lg:hidden">
+              className=" mr-2 lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -60,48 +59,60 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu  dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+              className="menu space-y-2 menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 rounded-box w-52">
               {links}
             </ul>
           </div>
-        <h3 className="text-2xl font-semibold w-60">Bite Spot Cafe</h3>
+          <h3 className="text-2xl font-semibold w-60">Bite Spot Cafe</h3>
         </div>
         <div className="flex">
           <div className=" hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
         </div>
-        {
-          user ? <div className="dropdown flex gap-5 dropdown-end">
-            <button className="font-semibold" onClick={handleLogOut}>Logout</button>
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn  btn-ghost btn-circle avatar">
-             
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src={user?.photoURL}
-              />
+        {user ? (
+          <div className="dropdown flex gap-5 dropdown-end">
+            <button
+              className="font-semibold"
+              onClick={handleLogOut}>
+              Logout
+            </button>
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn  btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS Navbar component"
+                  src={user?.photoURL}
+                />
+              </div>
             </div>
+            <ul
+              tabIndex={0}
+              className="mt-12 space-y-2 z-10 p-2 shadow menu menu-md dropdown-content bg-base-100 rounded-box text-white w-52">
+              <li className="border-b border-[#b65a18]">
+                <Link
+                  to={"/myFoods"}
+                  className="justify-between">
+                  My foods
+                </Link>
+              </li>
+              <li className="border-b border-[#b65a18]">
+                <Link to={"/addFood"}>Add a food</Link>
+              </li>
+              <li className="border-b border-[#b65a18]">
+                <Link to={"/myOrders"}>My ordered</Link>
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="mt-12 space-y-2 z-10 p-2 shadow menu menu-md dropdown-content bg-base-100 rounded-box text-white w-52">
-            <li className="border-b border-[#b65a18]">
-              <Link to={'/myFoods'} className="justify-between">My foods</Link>
-            </li>
-            <li className="border-b border-[#b65a18]">
-              <Link to={'/addFood'}>Add a food</Link>
-            </li>
-            <li className="border-b border-[#b65a18]">
-              <Link to={'/myOrders'}>My ordered</Link>
-            </li>
-            
-          </ul>
-        </div> : <Link className="text-lg font-semibold" to={'/login'}>Login</Link>
-        }
+        ) : (
+          <Link
+            className="text-lg font-semibold"
+            to={"/login"}>
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
