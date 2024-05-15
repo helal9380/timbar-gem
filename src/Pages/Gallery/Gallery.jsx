@@ -11,7 +11,7 @@ const Gallery = () => {
   const navigate = useNavigate();
   const { user } = useContext(authContext);
   useEffect(() => {
-    fetch("https://restaurant-server-ten.vercel.app/gallery")
+    fetch("http://localhost:5000/gallery")
       .then((res) => res.json())
       .then((data) => setImages(data));
   }, []);
@@ -25,7 +25,7 @@ const Gallery = () => {
     const feedbackUser = {feedback, img};
     console.log(feedbackUser);
  
-    fetch(`https://restaurant-server-ten.vercel.app/feedback/${id}`, {
+    fetch(`http://localhost:5000/feedback/${id}`, {
       method: 'PUT',
       headers: {
         'content-type' : 'application/json'

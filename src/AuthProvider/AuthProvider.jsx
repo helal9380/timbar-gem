@@ -16,9 +16,10 @@ import axios from "axios";
 export const authContext = createContext(null);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -29,31 +30,47 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
   };
+
   const signInWithGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
+
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currntUser) => {
-      if (currntUser) {
-        console.log("user ace", currntUser);
-        setUser(currntUser);
-        const loggedUser = {email: currntUser.email};
-        axios.post('https://restaurant-server-ten.vercel.app/jwt',loggedUser, {withCredentials: true})
-        .then(res => {
-          console.log('token',res.data);
-        })
+    const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      const loggedUser = { email: currentUser?.email };
+      if (currentUser) {
+        console.log("user ace", currentUser);
+        setUser(currentUser);
+      try {
+          const res = await axios.post('http://localhost:5000/jwt', loggedUser, { withCredentials: true });
+          console.log('token', res.data.token); // Assuming the token is in res.data.token
+        } catch (error) {
+          console.error('Error fetching token:', error.response ? error.response.data : error.message);
+        }
+      } else {
+        try {
+          await axios.post('http://localhost:5000/logout', {}, { withCredentials: true });
+          console.log('User logged out');
+        } catch (error) {
+          console.error('Error during logout:', error.response ? error.response.data : error.message);
+        }
+        setUser(null);
       }
       setLoading(false);
-    });
+    });   
+       
+
     return () => {
       unSubscribe();
     };
   }, []);
+
   const authInfo = {
     user,
     createUser,
@@ -62,8 +79,11 @@ const AuthProvider = ({ children }) => {
     logOut,
     signInWithGoogle,
   };
+
   return (
-    <authContext.Provider value={authInfo}>{children}</authContext.Provider>
+    <authContext.Provider value={authInfo}>
+      {children}
+    </authContext.Provider>
   );
 };
 

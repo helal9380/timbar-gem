@@ -44,7 +44,7 @@ const Register = () => {
         toast.error("Somthing error");
       });
 
-    fetch("https://restaurant-server-ten.vercel.app/users", {
+    fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -139,7 +139,7 @@ const Register = () => {
           <p className="text-red-500 font-semibold">{err}</p>
           <div className="form-control mt-6">
             <input
-              className="bg-[#e7272d] py-2 rounded-lg"
+              className="bg-[#e7272d] py-2 cursor-pointer rounded-lg"
               type="submit"
               value="Register"
             />
