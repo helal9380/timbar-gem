@@ -86,7 +86,7 @@ const AllFoods = () => {
               <div className="card-actions">
                 <Link
                   to={`/details/${item._id}`}
-                  className="rounded py-2 px-5 bg-[#cd2828]">
+                  className="rounded text-white font-semibold py-2 px-5 bg-[#cd2828]">
                   Details
                 </Link>
               </div>

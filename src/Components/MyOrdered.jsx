@@ -12,7 +12,9 @@ const MyOrdered = () => {
 
   console.log(myFoods);
   useEffect(() => {
-    fetch(`http://localhost:5000/myOrders/${user?.email}`, {credentials: 'include'})
+    fetch(`http://localhost:5000/myOrders/${user?.email}`, {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => setMyfoods(data));
   }, []);
@@ -41,16 +43,14 @@ const MyOrdered = () => {
                 icon: "success",
               });
             }
-            
           });
-        const remaing = myFoods.filter(item => item._id !== id);
-        setMyfoods(remaing)
+        const remaing = myFoods.filter((item) => item._id !== id);
+        setMyfoods(remaing);
       }
     });
-   
   };
   return (
-    <div>
+    <div className="w-[80%] mx-auto my-10">
       <Helmet>
         <title>Bite Spot Cafe | my order</title>
       </Helmet>
@@ -63,7 +63,8 @@ const MyOrdered = () => {
           {/* head */}
           <thead>
             <tr>
-              <th></th>
+              <th>No</th>
+              <th>Images</th>
               <th>Food Name</th>
               <th>Email</th>
               <th>Price</th>
@@ -73,14 +74,23 @@ const MyOrdered = () => {
           <tbody>
             {/* row 1 */}
             {myFoods?.map((item, index) => (
-              <tr>
+              <tr key={item._id}>
                 <th>{index + 1}</th>
+                <td>
+                  <div className="avatar">
+                    <div className="mask mask-squircle w-12 h-12">
+                      <img
+                        src={item?.foodImg}
+                      />
+                    </div>
+                  </div>
+                </td>
                 <td>{item?.foodName}</td>
                 <td>{item?.email}</td>
                 <td>{item?.price}</td>
                 <th>
                   <button
-                  onClick={() => handleDelete(item._id)}
+                    onClick={() => handleDelete(item._id)}
                     className="btn btn-ghost btn-xs">
                     Delete
                   </button>
