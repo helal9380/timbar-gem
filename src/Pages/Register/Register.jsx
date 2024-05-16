@@ -44,7 +44,7 @@ const Register = () => {
         toast.error("Somthing error");
       });
 
-    fetch("https://restaurant-ec162.web.app/users", {
+    fetch("https://restaurant-server-ten.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

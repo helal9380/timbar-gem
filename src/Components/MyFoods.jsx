@@ -11,7 +11,7 @@ const MyFoods = () => {
 
   console.log(user?.email);
   useEffect(() => {
-    fetch(`https://restaurant-ec162.web.app/myFoods/${user?.email}`, {credentials: 'include'})
+    fetch(`https://restaurant-server-ten.vercel.app/myFoods/${user?.email}`, {credentials: 'include'})
       .then((res) => res.json())
       .then((data) => setMyfoods(data));
   }, []);
