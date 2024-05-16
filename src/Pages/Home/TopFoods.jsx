@@ -8,7 +8,7 @@ const TopFoods = () => {
   const [foods, setFoods] = useState([]);
 
   useEffect(() => {
-    fetch("https://restaurant-server-ten.vercel.app/topFoods")
+    fetch("http://localhost:5000/topFoods")
       .then((res) => res.json())
       .then((data) => setFoods(data));
   }, []);
@@ -31,7 +31,7 @@ const TopFoods = () => {
             <div className=" h-[300px] mb-5">
               <figure className="mb-5 pt-10">
                 <img
-                  src={food?.foodImg}
+                  src={food?.imgUrl}
                   alt=""
                   className="rounded-xl h-full object-fit"
                 />
@@ -41,11 +41,11 @@ const TopFoods = () => {
               Order : {food?.count}{" "}
             </span>
             <div className="space-y-2 mt-2">
-              <h2 className="card-title">Food Name : {food?.foodName}</h2>
-              <h2 className="card-title">Buyer Name : {food?.buyerName}</h2>
+              <h2 className="card-title">Food Name : {food?.name}</h2>
+              <h2 className="card-title">Buyer Name : {food?.userName}</h2>
               <p>
                 <span className="font-semibold">Price : </span>
-                {food?.price}
+                {food?.pric}
               </p>
 
               <div className="card-actions">

@@ -1,7 +1,7 @@
 /** @format */
 
 import { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+
 import Swal from "sweetalert2";
 import { authContext } from "../AuthProvider/AuthProvider";
 import { Helmet } from "react-helmet-async";
@@ -12,7 +12,7 @@ const MyOrdered = () => {
 
   console.log(myFoods);
   useEffect(() => {
-    fetch(`https://restaurant-server-ten.vercel.app/myOrders/${user?.email}`, {credentials: 'include'})
+    fetch(`http://localhost:5000/myOrders/${user?.email}`, {credentials: 'include'})
       .then((res) => res.json())
       .then((data) => setMyfoods(data));
   }, []);
@@ -29,7 +29,7 @@ const MyOrdered = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://restaurant-server-ten.vercel.app/all_foods/${id}`, {
+        fetch(`http://localhost:5000/all_foods/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -47,13 +47,7 @@ const MyOrdered = () => {
         setMyfoods(remaing)
       }
     });
-    // fetch(`https://restaurant-server-ten.vercel.app/all_foods/${id}`, {
-    //   method: "DELETE",
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
+   
   };
   return (
     <div>
@@ -78,12 +72,12 @@ const MyOrdered = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {myFoods.map((item, index) => (
+            {myFoods?.map((item, index) => (
               <tr>
                 <th>{index + 1}</th>
                 <td>{item?.foodName}</td>
                 <td>{item?.email}</td>
-                <td>{item.price}</td>
+                <td>{item?.price}</td>
                 <th>
                   <button
                   onClick={() => handleDelete(item._id)}
