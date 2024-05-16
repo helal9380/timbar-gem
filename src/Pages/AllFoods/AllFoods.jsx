@@ -14,7 +14,7 @@ const AllFoods = () => {
     const search = form.search.value;
 
     fetch(
-      `http://localhost:5000/searchFoods?name=${encodeURIComponent(
+      `https://restaurant-server-ten.vercel.app/searchFoods?name=${encodeURIComponent(
         search
       )}`
     )

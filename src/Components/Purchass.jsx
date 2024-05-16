@@ -33,7 +33,7 @@ const Purchass = () => {
       count: 0,
     };
     // console.log(purchassedInformation);
-    fetch("http://localhost:5000/addPurchass", {
+    fetch("https://restaurant-server-ten.vercel.app/addPurchass", {
       method: "POST",
       headers: {
         "content-type": "application/json",

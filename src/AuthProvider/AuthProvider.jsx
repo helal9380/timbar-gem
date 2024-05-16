@@ -48,14 +48,14 @@ const AuthProvider = ({ children }) => {
         console.log("user ace", currentUser);
         setUser(currentUser);
       try {
-          const res = await axios.post('http://localhost:5000/jwt', loggedUser, { withCredentials: true });
+          const res = await axios.post('https://restaurant-server-ten.vercel.app/jwt', loggedUser, { withCredentials: true });
           console.log('token', res.data.token); // Assuming the token is in res.data.token
         } catch (error) {
           console.error('Error fetching token:', error.response ? error.response.data : error.message);
         }
       } else {
         try {
-          await axios.post('http://localhost:5000/logout', {}, { withCredentials: true });
+          await axios.post('https://restaurant-server-ten.vercel.app/logout', {}, { withCredentials: true });
           console.log('User logged out');
         } catch (error) {
           console.error('Error during logout:', error.response ? error.response.data : error.message);
